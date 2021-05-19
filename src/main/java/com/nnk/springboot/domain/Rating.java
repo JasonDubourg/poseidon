@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 
 @Entity
 @Table(name = "rating")
@@ -21,6 +22,7 @@ public class Rating {
 	@Column(name = "fitch_rating")
 	private String fitchRating;
 	@Column(name = "order_number")
+	@Digits(integer = 20, fraction = 0, message = "Doit être suppérieur à 0 et contenir moins de 20 nombres")
 	private Integer orderNumber;
 
 	public Rating() {

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
 
 @Entity
 @Table(name = "trade")
@@ -20,6 +21,7 @@ public class Trade {
 	private String account;
 	private String type;
 	@Column(name = "buy_quantity")
+	@DecimalMin(value = "0.00", inclusive = false, message = "Doit être suppérieur à 0")
 	private Double buyQuantity;
 	@Column(name = "sell_quantity")
 	private Double sellQuantity;

@@ -24,7 +24,7 @@ public class BidList {
 	@NotBlank(message = "Type is mandatory")
 	private String type;
 	@Column(name = "bid_quantity")
-	@DecimalMin(value = "0.0", inclusive = false, message = "Doit être suppérieur à 0")
+	@DecimalMin(value = "0.00", inclusive = false, message = "Doit être suppérieur à 0")
 	private Double bidQuantity;
 	@Column(name = "ask_quantity")
 	private Double askQuantity;
