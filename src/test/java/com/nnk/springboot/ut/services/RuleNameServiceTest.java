@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -37,7 +36,6 @@ public class RuleNameServiceTest {
 
 	List<RuleName> rulesNamesListTest = new ArrayList<RuleName>();
 
-	@Test
 	public void testFindAllRules() {
 		rulesNamesListTest.add(ruleNameTest1);
 		rulesNamesListTest.add(ruleNameTest2);
@@ -45,21 +43,18 @@ public class RuleNameServiceTest {
 		assertEquals(2, rulesNamesListTest.size());
 	}
 
-	@Test
 	public void testFindRuleById() {
 		Optional<RuleName> ruleNameTest3 = Optional.of(new RuleName());
 		Mockito.when(ruleNameService.findById(1)).thenReturn(ruleNameTest3);
 		assertNotNull(ruleNameTest3);
 	}
 
-	@Test
 	public void testSaveRule() {
 		String ref = "Test1";
 		Mockito.when(ruleNameService.save(ruleNameTest1)).thenReturn(ruleNameTest1);
 		assertEquals(ref, ruleNameTest1.getDescription());
 	}
 
-	@Test
 	public void testDeleteRule() {
 		Mockito.doNothing().when(ruleNameService).delete(ruleNameTest2);
 		verify(ruleNameService, times(1));

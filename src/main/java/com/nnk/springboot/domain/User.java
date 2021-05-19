@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -14,14 +12,13 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@NotBlank(message = "Username is mandatory")
+
 	private String username;
-	@NotBlank(message = "Password is mandatory")
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "Le mot de passe doit contenir au moins une lettre majuscule, 8 caractères, un chiffre et un symbole'")
+
 	private String password;
-	@NotBlank(message = "FullName is mandatory")
+
 	private String fullname;
-	@NotBlank(message = "Role is mandatory")
+
 	private String role;
 
 	public Integer getId() {

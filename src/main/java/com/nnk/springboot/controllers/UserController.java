@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.services.UserService;
+import com.nnk.springboot.userDto.UserDto;
 
 @Controller
 public class UserController {
@@ -36,12 +36,11 @@ public class UserController {
 	}
 
 	@PostMapping("/user/validate")
-	public String validate(@Valid User user, BindingResult result, Model model) {
+	public String validate(@Valid UserDto user, BindingResult result, Model model) {
 		if (!result.hasErrors()) {
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			user.setPassword(encoder.encode(user.getPassword()));
-			userService.save(user);
+			userService.saveUser(user);
 			model.addAttribute("users", userService.findAll());
+			System.out.println("Yep");
 			return "redirect:/user/list";
 		}
 		return "user/add";
@@ -56,14 +55,11 @@ public class UserController {
 	}
 
 	@PostMapping("/user/update/{id}")
-	public String updateUser(@PathVariable("id") Integer id, @Valid User user, BindingResult result, Model model) {
+	public String updateUser(@PathVariable("id") Integer id, @Valid UserDto user, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "user/update";
 		}
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		user.setPassword(encoder.encode(user.getPassword()));
-		user.setId(id);
-		userService.save(user);
+		userService.update(user);
 		model.addAttribute("users", userService.findAll());
 		return "redirect:/user/list";
 	}

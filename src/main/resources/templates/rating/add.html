@@ -42,7 +42,7 @@
 			<div class="form-group">
 				<label for="orderNumber" class="col-sm-2 control-label">OrderNumber</label>
 				<div class="col-sm-10">
-					<input type="text" th:field="*{orderNumber}" placeholder="OrderNumber" id="orderNumber" class="col-4">
+					<input type="number" min="0" step="1" th:field="*{orderNumber}" placeholder="OrderNumber" id="orderNumber" class="col-4" required>
 					<p class="text-danger" th:errors="*{orderNumber}"></p>
 				</div>
 			</div>

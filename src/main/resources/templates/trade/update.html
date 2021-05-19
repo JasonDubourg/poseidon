@@ -34,7 +34,7 @@
 			<div class="form-group">
 				<label for="buyQuantity" class="col-sm-2 control-label">buyQuantity</label>
 				<div class="col-sm-10">
-					<input type="text" th:placeholder="${trade.buyQuantity}" th:field="*{buyQuantity}" id="buyQuantity" class="col-4">
+					<input type="number" min="0.00" step="0.01" th:placeholder="${trade.buyQuantity}" th:field="*{buyQuantity}" id="buyQuantity" class="col-4" required>
 					<p class="text-danger" th:errors="*{buyQuantity}"></p>
 				</div>
 			</div>

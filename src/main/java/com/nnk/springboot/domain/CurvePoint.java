@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,13 +18,10 @@ public class CurvePoint {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull(message = "must not be null")
-	@Min(1)
 	private Integer curveId;
 	@Column(name = "as_of_date")
 	private Timestamp asOfDate;
-	@DecimalMin(value = "0.0", inclusive = false, message = "Doit être suppérieur à 0")
 	private double term;
-	@DecimalMin(value = "0.0", inclusive = false, message = "Doit être suppérieur à 0")
 	private double value;
 	@Column(name = "creation_date")
 	private Timestamp creationDate;

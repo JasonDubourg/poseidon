@@ -27,7 +27,7 @@ public class RuleTests {
 		// Save
 		rule = ruleNameRepository.save(rule);
 		Assert.assertNotNull(rule.getId());
-		Assert.assertTrue(rule.getId().equals("Rule Name"));
+		Assert.assertTrue(rule.getName().equals("Rule Name"));
 
 		// Update
 		rule.setName("Rule Name Update");
