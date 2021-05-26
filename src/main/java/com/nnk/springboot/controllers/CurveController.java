@@ -45,7 +45,6 @@ public class CurveController {
 			cp.setValue(curvePoint.getValue());
 			curvePointService.save(cp);
 			model.addAttribute("curvePoints", curvePointService.findAllCurvePoints());
-			System.out.println("OK");
 			return "redirect:/curvePoint/list";
 		}
 		return "curvePoint/add";

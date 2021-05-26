@@ -31,7 +31,9 @@ public class UserController {
 	}
 
 	@GetMapping("/user/add")
-	public String addUser(User user) {
+	public String addUser(Model model) {
+		UserDto user = new UserDto();
+		model.addAttribute(user);
 		return "user/add";
 	}
 
@@ -40,7 +42,6 @@ public class UserController {
 		if (!result.hasErrors()) {
 			userService.saveUser(user);
 			model.addAttribute("users", userService.findAll());
-			System.out.println("Yep");
 			return "redirect:/user/list";
 		}
 		return "user/add";
@@ -48,7 +49,7 @@ public class UserController {
 
 	@GetMapping("/user/update/{id}")
 	public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-		User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+		User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bid Id:" + id));
 		user.setPassword("");
 		model.addAttribute("user", user);
 		return "user/update";
@@ -66,7 +67,7 @@ public class UserController {
 
 	@GetMapping("/user/delete/{id}")
 	public String deleteUser(@PathVariable("id") Integer id, Model model) {
-		User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+		User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bid Id:" + id));
 		userService.delete(user);
 		model.addAttribute("users", userService.findAll());
 		return "redirect:/user/list";
